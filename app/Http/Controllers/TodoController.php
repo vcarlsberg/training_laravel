@@ -31,7 +31,7 @@ class TodoController extends Controller
         $todo->update($request->all());
         if($todo->isDirty()) //[optional]cek  bila tidak ada data berubah, maka tidak di update
         $todo -> save();
-        //return redirect('/todo');;
+        ///return redirect('/todo');;
         return redirect('/todo')->with('message','Data Todo '.$todo->title.' Telah Diupdate');
     }
 
