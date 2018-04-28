@@ -125,7 +125,7 @@ class UserController extends Controller
         $query = DB::table('users')->where('id',$id);
         $user=$query->first();
         $query->delete();
-        
+        ///////
         return redirect('/user')->with('message','Data User'.$user->name.'Telah Dihapus');
     }
 }
