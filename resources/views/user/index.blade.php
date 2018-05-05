@@ -7,15 +7,18 @@
         </div>
         <div class="box-body">
         {{ Session ('message') }}
-            <table class="table table-bordered">
+            <table id="users-table" class="table table-bordered">
                 <tr>
+                <thead>
+                    <!-- <th></th> -->
                     <th>Nama</th>
                     <th>Email</th>
-                    <th>Password</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <!-- <th>Password</th> -->
+                    <!-- <th>Edit</th>
+                    <th>Delete</th> -->
                 </tr>
-                @foreach($users as $user)
+                </thead>
+                <!-- @foreach($users as $user)
                     <tr>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
@@ -27,9 +30,10 @@
                         {{Form::close()}}
                         </th>
                     </tr>
-                @endforeach
+                @endforeach -->
             </table>
             <hr>
+            {{$users->links()}}
             <a href="/user/create" class="btn btn-danger btn-sm">Create New User</a>
         </div>
 </div>
@@ -38,3 +42,20 @@
 
     
 @endsection()
+
+@push('scripts')
+<script>
+$(function() {
+    $('#users-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '/user/json',
+        columns: [
+            { data: 'name', name: 'name' },
+            { data: 'email', name: 'email' },
+            // { data: 'password', name: 'password' }
+        ]
+    });
+});
+</script>
+@endpush

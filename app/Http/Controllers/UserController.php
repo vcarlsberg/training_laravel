@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Hash;
+use Datatables;
+use App\User;
 
 class UserController extends Controller
 {
@@ -13,6 +15,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function json()
+    {
+        $user=User::all();
+        return Datatables::of($user)->make(true);
+    }
+
     public function index()
     {
 /*         $data['users'] = array(
@@ -20,7 +29,8 @@ class UserController extends Controller
                 array('name'=>'zaki','email'=>'zaki.akbar@gmail.com','password'=>'password')
         ); */
 
-        $data['users']=DB::table('users')->get();
+        $data['users'] = User::simplePaginate(2);
+        // $data['users']=DB::table('users')->get();
         return view('user.index',$data);
     }
 

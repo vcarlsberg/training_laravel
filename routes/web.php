@@ -20,6 +20,7 @@ Route::get('todo2',function(){
     return view('todo',$data);
 });
 
+Route::get('todo/json','TodoController@json');
 Route::get('todo','TodoController@index');
 Route::get('todo/create','Todocontroller@create');
 Route::post('todo','TodoController@store');
@@ -31,6 +32,7 @@ Route::get('category','CategoryController@index');
 Route::get('category/create','CategoryController@create');
 Route::post('category','CategoryController@store');
 
+Route::get('user/json','UserController@json');
 Route::get('user','UserController@index');
 Route::get('user/create','UserController@create');
 Route::post('user','UserController@store');

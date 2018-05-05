@@ -4,3 +4,4 @@
 <br>
 {{ Form::textarea('description',null)}}
 <br>
+{{Form::file('images')}}

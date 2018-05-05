@@ -5,7 +5,7 @@
 
     @include('share.validation')
 
-    {{ Form::open(['url'=>'todo'])}}
+    {{ Form::open(['url'=>'todo','files'=>'true'])}}
     @include('todo.form')
     {{ Form::submit('Save Todo')}}
     {{ link_to('/todo','Back')}}

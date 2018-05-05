@@ -17,6 +17,8 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{ asset('adminlte/dist/css/skins/_all-skins.min.css') }}">
+  
+  <link rel="stylesheet" href="{{ asset('cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css')}}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -563,6 +565,9 @@
 <!-- jQuery 3 -->
 <script src="{{ asset('adminlte/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
+<!-- Datatable-->
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+
 <script src="{{ asset('adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- Slimscroll -->
 <script src="{{ asset('adminlte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
@@ -572,5 +577,8 @@
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('adminlte/dist/js/demo.js')}}"></script>
+
+
+@stack('scripts')
 </body>
 </html>

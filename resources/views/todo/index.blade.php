@@ -7,14 +7,19 @@
         </div>
         <div class="box-body">
         {{ Session ('message') }}
-            <table class="table table-bordered">
+            <table id="users-table" class="table table-bordered">
+            
                 <tr>
+                <thead>
+                    <th></th>
                     <th>Title</th>
                     <th>Description</th>
                     <th>Created at</th>
-                    <th width="135"></th>
+                    <th width="150"></th>
+                </thead>
                 </tr>
-                @foreach($todos as $todo)
+                
+                <!-- @foreach($todos as $todo)
                     <tr>
                         <td>{{ $todo->title }}</td>
                         <td>{{ $todo->description}}</td>
@@ -26,14 +31,36 @@
                         {{Form::close()}}
                         </td>
                     </tr>
-                @endforeach
+                @endforeach -->
             </table>
             <hr>
+            <!-- {{$todos->links()}} -->
             <a href="/todo/create" class="btn btn-danger btn-sm">Create New Todo</a>
         </div>
+        
 </div>
 
 
 
     
 @endsection()
+
+@push('scripts')
+<script>
+$(function() {
+    $('#users-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '/todo/json',
+        columns: [
+            { data: 'images', name: 'images' },
+            { data: 'title', name: 'title' },
+            { data: 'description', name: 'description' },
+            { data: 'created_at', name: 'created_at' },
+            { data: 'updated_at', name: 'updated_at' },
+            { data: 'action', name: 'action' }
+        ]
+    });
+});
+</script>
+@endpush
