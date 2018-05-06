@@ -20,6 +20,8 @@ class TestController extends Controller
         $pdf = \PDF::loadView('test', $data);
         return $pdf->stream();
 
+        
+
         // $pdf = App::make('dompdf.wrapper');
         // $pdf->loadHTML('/test',$data);
         // return $pdf->stream();
