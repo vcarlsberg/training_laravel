@@ -14,4 +14,12 @@ class Todo extends Model
     {
         return strtoupper($value);
     }
+
+    function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
+
+
 }

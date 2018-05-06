@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -20,8 +22,10 @@ Route::get('todo2',function(){
     return view('todo',$data);
 });
 
+
+
 Route::get('todo/json','TodoController@json');
-Route::get('todo','TodoController@index');
+Route::get('todo','TodoController@index'); //->middleware('checkLogin');
 Route::get('todo/create','Todocontroller@create');
 Route::post('todo','TodoController@store');
 Route::get('todo/{id}/edit','TodoController@edit');
@@ -40,4 +44,12 @@ Route::get('user/{id}/edit','UserController@edit');
 Route::put('user/{id}','UserController@update');
 Route::delete('user/{id}','UserController@destroy');
 
+Route::get('test','TestController@index');
+Route::get('data_user','TestController@test');
 
+Route::get('pdf','TodoController@pdf');
+Route::get('excel','TodoController@excel');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

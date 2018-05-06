@@ -4,12 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Todo;
+use App\Category;
 use Datatables;
 use Collective\Html\FormFacade as Form;
 
 
 class TodoController extends Controller
 {
+
+    public function __construct()
+    {
+        //$this->middleware('checkLogin',['except'=>['pdf','excel']]);
+    }
+
+    public function pdf()
+    {
+        return 'pdf';
+    }
+
+    
+    public function excel()
+    {
+        return 'excel';
+    }
 
     public function json()
     {
@@ -38,22 +55,34 @@ class TodoController extends Controller
     }
 
     public function create(){
+        $data['categories']=Category::pluck('name','id');
         return view('todo.create');
         
     }
 
     public function edit($id){
         $data['todo']=Todo::find($id);
+        $data['categories']=Category::pluck('name','id');
         return view('todo.edit',$data);
     }
 
     public function update($id, Request $request){
         $this->rules($request);
-
         $todo=Todo::find($id);
-        $todo->update($request->all());
-        if($todo->isDirty()) //[optional]cek  bila tidak ada data berubah, maka tidak di update
-        $todo -> save();
+
+        $fileName=$this->do_upload($request);
+        if(!empty($fileName)){
+            $todo->image=$fileName;
+        }
+
+
+        // $todo->update($request->all());
+        // if($todo->isDirty()) //[optional]cek  bila tidak ada data berubah, maka tidak di update
+        // $todo -> save();
+
+        $todo->title=$request->title;
+        $todo->description = $request->description;
+        $todo->update();
         ///return redirect('/todo');;
         return redirect('/todo')->with('message','Data Todo '.$todo->title.' Telah Diupdate');
     }
@@ -96,5 +125,19 @@ class TodoController extends Controller
             'description' => 'required|max:25',
         ]);
 
+    }
+
+    public function do_upload($request)
+    {
+        $file=$request->file('images');
+
+        if($file)
+        {
+            $namaFile=$file->getClientOriginalName();
+            $folder="images";
+
+            $file->move($folder,$namaFile);
+            return $namaFile;
+        }
     }
 }

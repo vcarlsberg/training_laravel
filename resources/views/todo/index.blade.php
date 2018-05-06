@@ -16,6 +16,7 @@
                     <th>Description</th>
                     <th>Created at</th>
                     <th width="150"></th>
+                    <th></th>
                 </thead>
                 </tr>
                 

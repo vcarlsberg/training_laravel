@@ -5,7 +5,7 @@
 
     @include('share.validation')
 
-    {{ Form::model($todo,['url'=>'todo/'.$todo->id,'method'=>'put'])}}
+    {{ Form::model($todo,['url'=>'todo/'.$todo->id,'method'=>'put','files'=>'true'])}}
     @include('todo.form')
     {{ Form::submit('Update Todo')}}
     {{ link_to('/todo','Back')}}
