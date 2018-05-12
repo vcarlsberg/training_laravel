@@ -50,7 +50,7 @@ class TestController extends Controller
         }
         else
         {
-            return 'belum login';
+            return 'anda belum login ';
         }
     }
 
