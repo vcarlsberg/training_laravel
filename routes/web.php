@@ -22,6 +22,7 @@ Route::get('todo2',function(){
     return view('todo',$data);
 });
 
+Route::get('ajax_get','testController@ajaxGet'); //--> //coba ajax
 
 
 Route::get('todo/json','TodoController@json');

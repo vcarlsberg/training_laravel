@@ -50,8 +50,13 @@ class TestController extends Controller
         }
         else
         {
-            return 'anda belum login ';
+            return 'anda belum login mas/mbak ';
         }
+    }
+
+    public function ajaxGet()
+    {
+        return view ('ajax');
     }
 
    
